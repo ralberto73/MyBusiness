@@ -6,9 +6,9 @@ using System.Text;
 
 namespace MyBusiness.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class SecurityDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public SecurityDbContext(DbContextOptions<SecurityDbContext> options)
             : base(options)
         {
         }
