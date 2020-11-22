@@ -1,32 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+
+#nullable disable
 
 namespace MyBusiness.Models
 {
-    public class WorkOrder
+    public partial class WorkOrder
     {
-        [Key]
-        public int    WorkOrderId  { get; set; }
-
-        /// <summary>
-        /// /   Order Status
-        /// </summary>
-        [Required]
-        [StringLength(20)]
-        [Display(Name = "Status")]
-        public string OrderStatusId { get; set; }
-
-
-        /// <summary>
-        ///   Order  Description
-        /// </summary>
-        [StringLength(250)]
-        [Display(Name = "Description")]
-        [Column(TypeName = "nvarchar")]
-        public string OrderDescription { get; set; }
-
+        public long WorkOrderId { get; set; }
+        public string WorkOrderStatusId { get; set; }
+        public string MainContat { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int? Year { get; set; }
+        public string Description { get; set; }
     }
 }

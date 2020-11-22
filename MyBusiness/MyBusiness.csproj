@@ -19,4 +19,10 @@
     <Folder Include="Areas\Order\Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyBusiness.Data\MyBusiness.Data.csproj" />
+    <ProjectReference Include="..\MyBusiness.Models\MyBusiness.Models.csproj" />
+    <ProjectReference Include="..\MyBusiness.Utils\MyBusiness.Utils.csproj" />
+  </ItemGroup>
+
 </Project>
