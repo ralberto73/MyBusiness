@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MyBusiness.Models
+namespace MyBusiness.Data
 {
     public class Class1
     {

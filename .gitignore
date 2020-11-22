@@ -6,3 +6,5 @@
 /MyBusiness/bin/Debug/net5.0
 /MyBusiness/obj
 /MyBusiness.Models/obj
+/MyBusiness.Data/obj
+/MyBusiness.Utils/obj
