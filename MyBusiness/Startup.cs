@@ -63,7 +63,7 @@ namespace MyBusiness
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=WorkOrder}/{controller=WorkOrder}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
