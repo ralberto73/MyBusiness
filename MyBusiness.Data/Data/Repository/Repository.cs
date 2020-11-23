@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyBusiness.Data.Data.Repository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext Context;
         internal DbSet<T> dbSet;
@@ -36,12 +36,38 @@ namespace MyBusiness.Data.Data.Repository
             {
                 query.Where(filter);
             }
-            return query;
+            //  
+            if (includeProperties != null)
+            {
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+            if (orderBy != null)
+            {
+                return orderBy(query).ToList();
+            }
+            return query.ToList();
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query.Where(filter);
+            }
+            //  
+            if (includeProperties != null)
+            {
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            return query.FirstOrDefault();
         }
 
         public void Remove(int id)

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyBusiness.Data.Data.Repository.IRepository
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
+        IWorkOrdeRepository workOrder { get; }
+
+        void Save();
     }
 }
