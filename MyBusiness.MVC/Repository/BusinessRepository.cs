@@ -11,12 +11,13 @@ namespace MyBusiness.MVC.Repository
         private ApplicationDbContext _db;
         public BusinessRepository() //( ApplicationDbContext  dbContext)
         {
-          //  _db = dbContext;
+          //  var op = new
+          //_db =  new ApplicationDbContext (    ///dbContext;
 
         }
 
         public  IEnumerable<Brand> GetAllBrands()  => new List<Brand> {
-                                                                               new Brand { BrandId = "Acura" } };
+                                                                         new Brand { BrandId = "Acura" } };
 
 
     }

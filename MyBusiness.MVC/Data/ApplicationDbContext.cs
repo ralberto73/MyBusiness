@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyBusiness.Models;
 
 namespace MyBusiness.Models
 {
-    public class ApplicationDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext
-    {
+    public class ApplicationDbContext : DbContext
+    { 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
-        DbSet<Brand> Brands;
+        public DbSet<Brand>     Brands;
+        public DbSet<WorkOrder> WorkOrders;
+        public DbSet<MyBusiness.Models.WorkOrder> WorkOrder { get; set; }
     }
 }
