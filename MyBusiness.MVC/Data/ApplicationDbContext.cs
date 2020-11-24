@@ -17,6 +17,6 @@ namespace MyBusiness.Models
 
         public DbSet<Brand>     Brands;
         public DbSet<WorkOrder> WorkOrders;
-        public DbSet<MyBusiness.Models.WorkOrder> WorkOrder { get; set; }
+        public DbSet<WorkOrder> WorkOrder { get; set; }
     }
 }

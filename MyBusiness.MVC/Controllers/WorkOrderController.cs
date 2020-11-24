@@ -21,8 +21,9 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders
         public async Task<IActionResult> Index()
         {
-            
+           // ViewData.Add("Brands", _context.Brands);          
             return View(_context.WorkOrder);
+
         }
 
         // GET: WorkOrders/Details/5
@@ -46,6 +47,7 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders/Create
         public IActionResult Create()
         {
+            ViewData.Add("Brands", _context.Brands);
             return View();
         }
 

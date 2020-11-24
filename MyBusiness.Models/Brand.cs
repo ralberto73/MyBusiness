@@ -10,6 +10,8 @@ namespace MyBusiness.Models
     public class Brand
     {
         [Key]
-        public string BrandId;  
+        public string BrandId;
+
+        public string Description;
     }
 }
