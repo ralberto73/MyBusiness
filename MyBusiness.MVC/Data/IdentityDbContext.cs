@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBusiness.Data
+namespace MyBusiness.MVC.Data
 {
-    public class SecurityDbContext : IdentityDbContext
+    public class IdentityDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext
     {
-        public SecurityDbContext(DbContextOptions<SecurityDbContext> options)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
             : base(options)
         {
         }
