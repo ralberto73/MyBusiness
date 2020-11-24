@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBusiness.Models;
 using MyBusiness.MVC.Data;
+using MyBusiness.MVC.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,11 @@ namespace MyBusiness.MVC
                  options.UseSqlServer(
                      Configuration.GetConnectionString("ApplicationDBConnection")));
 
-            services.AddDatabaseDeveloperPageExceptionFilter();
+
+
+            services.AddSingleton <IBusinessRepository,BusinessRepository>();
+
+           // services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<IdentityDbContext>();

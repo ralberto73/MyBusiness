@@ -13,5 +13,7 @@ namespace MyBusiness.Models
             : base(options)
         {
         }
+
+        DbSet<Brand> Brands;
     }
 }
