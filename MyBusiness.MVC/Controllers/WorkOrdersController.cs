@@ -45,6 +45,13 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders/Create
         public IActionResult Create()
         {
+            //  Fill  Brands Dropdown List
+            var a = _context.Brands.Select(n => new SelectListItem
+                            {
+                                Value = n.BrandId,
+                                Text = n.BrandId
+                            }).ToList();
+            ViewData["BrandList"] = a;
             return View();
         }
 
