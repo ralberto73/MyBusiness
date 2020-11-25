@@ -41,7 +41,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr style='background-color: @(item.WorkOrderStatusId == "CREATED" ? "gray" : "white");'>
             <td>
                 @Html.DisplayFor(modelItem => item.WorkOrderStatusId)
             </td>

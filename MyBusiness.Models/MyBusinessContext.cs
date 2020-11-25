@@ -47,7 +47,7 @@ namespace MyBusiness.Models
                 entity.ToTable("WorkOrder");
 
                 entity.Property(e => e.Brand)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Description).HasMaxLength(100);

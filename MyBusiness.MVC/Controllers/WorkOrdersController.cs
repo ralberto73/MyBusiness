@@ -46,12 +46,12 @@ namespace MyBusiness.MVC.Controllers
         public IActionResult Create()
         {
             //  Fill  Brands Dropdown List
-            var a = _context.Brands.Select(n => new SelectListItem
-                            {
-                                Value = n.BrandId,
-                                Text = n.BrandId
-                            }).ToList();
-            ViewData["BrandList"] = a;
+
+            ViewData["BrandList"] = _context.Brands.Select(n => new SelectListItem 
+                                            {
+                                                Value = n.BrandId,
+                                                Text = n.BrandId
+                                            }).ToList();
             return View();
         }
 
