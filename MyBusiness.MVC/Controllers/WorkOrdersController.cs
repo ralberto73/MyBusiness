@@ -9,11 +9,11 @@ using MyBusiness.Models;
 
 namespace MyBusiness.MVC.Controllers
 {
-    public class WorkOrderController : Controller
+    public class WorkOrdersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly MyBusinessContext _context;
 
-        public WorkOrderController(ApplicationDbContext context)
+        public WorkOrdersController(MyBusinessContext context)
         {
             _context = context;
         }
@@ -21,9 +21,7 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders
         public async Task<IActionResult> Index()
         {
-           // ViewData.Add("Brands", _context.Brands);          
-            return View(_context.WorkOrder);
-
+            return View(await _context.WorkOrders.ToListAsync());
         }
 
         // GET: WorkOrders/Details/5
@@ -34,7 +32,7 @@ namespace MyBusiness.MVC.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrder
+            var workOrder = await _context.WorkOrders
                 .FirstOrDefaultAsync(m => m.WorkOrderId == id);
             if (workOrder == null)
             {
@@ -47,7 +45,6 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders/Create
         public IActionResult Create()
         {
-            ViewData.Add("Brands", _context.Brands);
             return View();
         }
 
@@ -75,7 +72,7 @@ namespace MyBusiness.MVC.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrder.FindAsync(id);
+            var workOrder = await _context.WorkOrders.FindAsync(id);
             if (workOrder == null)
             {
                 return NotFound();
@@ -126,7 +123,7 @@ namespace MyBusiness.MVC.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrder
+            var workOrder = await _context.WorkOrders
                 .FirstOrDefaultAsync(m => m.WorkOrderId == id);
             if (workOrder == null)
             {
@@ -141,15 +138,15 @@ namespace MyBusiness.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var workOrder = await _context.WorkOrder.FindAsync(id);
-            _context.WorkOrder.Remove(workOrder);
+            var workOrder = await _context.WorkOrders.FindAsync(id);
+            _context.WorkOrders.Remove(workOrder);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool WorkOrderExists(long id)
         {
-            return _context.WorkOrder.Any(e => e.WorkOrderId == id);
+            return _context.WorkOrders.Any(e => e.WorkOrderId == id);
         }
     }
 }

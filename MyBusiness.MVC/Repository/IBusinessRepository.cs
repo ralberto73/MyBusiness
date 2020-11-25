@@ -8,6 +8,6 @@ namespace MyBusiness.MVC.Repository
 {
     public interface IBusinessRepository
     {
-        public IEnumerable<Brand> GetAllBrands();
+       // public IEnumerable<Brand> GetAllBrands();
     }
 }

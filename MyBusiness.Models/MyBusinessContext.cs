@@ -17,24 +17,34 @@ namespace MyBusiness.Models
         {
         }
 
+        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<WorkOrderDetail> WorkOrderDetails { get; set; }
         public virtual DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-60J88C7D\\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Data Source=LAPTOP-60J88C7D\\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Brand>(entity =>
+            {
+                entity.ToTable("Brand");
+
+                entity.Property(e => e.BrandId).HasMaxLength(20);
+
+                entity.Property(e => e.Description).HasMaxLength(150);
+            });
+
             modelBuilder.Entity<WorkOrder>(entity =>
             {
-                entity.Property(e => e.WorkOrderId).ValueGeneratedNever();
+                entity.ToTable("WorkOrder");
 
                 entity.Property(e => e.Brand)
                     .HasMaxLength(10)

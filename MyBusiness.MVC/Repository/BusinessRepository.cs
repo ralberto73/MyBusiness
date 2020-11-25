@@ -16,8 +16,8 @@ namespace MyBusiness.MVC.Repository
 
         }
 
-        public  IEnumerable<Brand> GetAllBrands()  => new List<Brand> {
-                                                                         new Brand { BrandId = "Acura" } };
+        //public  IEnumerable<Brand> GetAllBrands()  => new List<Brand> {
+        //                                                                 new Brand { BrandId = "Acura" } };
 
 
     }

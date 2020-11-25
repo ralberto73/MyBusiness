@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace MyBusiness.Models
 {
-    public class Brand
+    public partial class Brand
     {
-        [Key]
-        public string BrandId;
-
-        public string Description;
+        public string BrandId { get; set; }
+        public string Description { get; set; }
     }
 }

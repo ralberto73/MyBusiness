@@ -33,7 +33,7 @@ namespace MyBusiness.MVC
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<MyBusinessContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("ApplicationDBConnection")));
 
