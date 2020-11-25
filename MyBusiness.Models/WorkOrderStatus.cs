@@ -9,5 +9,6 @@ namespace MyBusiness.Models
     {
         public string WorkOrderStatusId { get; set; }
         public string StatusDescription { get; set; }
+        public string Color { get; set; }
     }
 }
