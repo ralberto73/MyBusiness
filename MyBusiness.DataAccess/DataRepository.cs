@@ -65,7 +65,7 @@ namespace MyBusiness.DataAccess
             }
         }
 
-        private Value MapToValue(SqlDataReader reader , )
+        private Value MapToValue<(SqlDataReader reader , )
         {
             return new Value()
             {
@@ -74,5 +74,16 @@ namespace MyBusiness.DataAccess
                 Value2 = reader["Value2"].ToString()
             };
         } */
+
+        private T MapValues<T>(SqlDataReader reader) where T : new()
+        {
+            T result = new T();
+            //for (int i = 0; i < myPropertyInfo.Length; i++)
+            //{
+            //    Console.WriteLine(myPropertyInfo[i].ToString());
+            //}
+
+            return result;
+        }
     }
 }
