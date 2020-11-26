@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,8 +33,8 @@ namespace MyBusiness.DataAccess
                     {
                         while (await reader.ReadAsync())
                         {
-                            //response.Add(MapToValue(reader));
-                            var a = reader[0];
+                            var a = reader.GetColumnSchema();
+                            var r = MapValues<WorkOrder1>(reader);
                         }
                     }
 
@@ -65,24 +66,23 @@ namespace MyBusiness.DataAccess
             }
         }
 
-        private Value MapToValue<(SqlDataReader reader , )
-        {
-            return new Value()
-            {
-                Id = (int)reader["Id"],
-                Value1 = (int)reader["Value1"],
-                Value2 = reader["Value2"].ToString()
-            };
         } */
 
         private T MapValues<T>(SqlDataReader reader) where T : new()
         {
             T result = new T();
-            //for (int i = 0; i < myPropertyInfo.Length; i++)
-            //{
-            //    Console.WriteLine(myPropertyInfo[i].ToString());
-            //}
+            // var columnShemas = ;
 
+            foreach (var schema in reader.GetColumnSchema())
+            {
+                var property_name = schema.ColumnName.Trim();
+                var type = result.GetType();
+                // Get the PropertyInfo object by passing the property name.
+                PropertyInfo myPropInfo = type.GetProperty(property_name);
+                if (myPropInfo != null)
+                    // Fill  the property.
+                    myPropInfo.SetValue( result, reader[property_name], null);
+            }
             return result;
         }
     }
