@@ -1,7 +1,15 @@
 ﻿@model IEnumerable<MyBusiness.Models.WorkOrder>
-
+@using  System.Collections.Generic;
 @{
     ViewData["Title"] = "Index";
+    //var Data1 = ViewData["StatusColors"].["CREATED"];
+    //var b = ;
+  /*  Dictionary<string, string> k = new Dictionary<string, string>();
+    foreach (var b in ViewBag.StatusColors)
+    {
+        k.Add( new KeyValuePair<string,string>() {}
+       
+    } */
 }
 
 <h1>Index</h1>
@@ -40,38 +48,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr style='background-color: @(item.WorkOrderStatusId == "CREATED" ? "gray" : "white");'>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkOrderStatusId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainContat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.WorkOrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WorkOrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WorkOrderId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr style='background-color: white'>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkOrderStatusId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainContat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.WorkOrderId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.WorkOrderId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.WorkOrderId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

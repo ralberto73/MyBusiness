@@ -21,7 +21,25 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders
         public async Task<IActionResult> Index()
         {
+            /* var QSOuterJoin = from wo in _context.WorkOrders
+                               join wos in _context.WorkOrderStatuses
+                               on wo.WorkOrderStatusId equals wos.WorkOrderStatusId
+                               into WosGroup
+                               from fwo in WosGroup.DefaultIfEmpty()
+                               select new { fwo.Color , wo.WorkOrderId ,wo.WorkOrderStatusId ,wo.Brand ,wo.Description, wo.Email ,wo.MainContat, wo.Model, wo.Phone , wo.Year };
+            */
+            // ViewData["StatusColors"] = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
+
+            //ViewBag.StatusColors = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
+            Dictionary<string, string> colors = new Dictionary<string, string>();
+            foreach (var a in _context.WorkOrderStatuses) 
+            {
+                colors.Add(a.WorkOrderStatusId, a.Color);
+            }
+            ViewBag.StatusColors = colors;
             return View(await _context.WorkOrders.ToListAsync());
+          //  return View( QSOuterJoins);
+            //QSOuterJoin
         }
 
         // GET: WorkOrders/Details/5
@@ -52,6 +70,8 @@ namespace MyBusiness.MVC.Controllers
                                                 Value = n.BrandId,
                                                 Text = n.BrandId
                                             }).ToList();
+           
+           
             return View();
         }
 
