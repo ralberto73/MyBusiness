@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBusiness.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -17,8 +18,11 @@ namespace MyBusiness.DataAccess
             _connection_string = connection_string;
         }
 
-        public async Task GetAllAsync() 
+        public async Task<List<WorkOrder1>> GetAllAsync() 
         {
+            //   Declares the result List 
+            var result_list = new List<WorkOrder1>();
+
             using (SqlConnection sql = new SqlConnection(_connection_string))
             {
                 using (SqlCommand cmd = new SqlCommand("GetWorkOrders", sql))
@@ -33,12 +37,13 @@ namespace MyBusiness.DataAccess
                     {
                         while (await reader.ReadAsync())
                         {
-                            var a = reader.GetColumnSchema();
+                           //   var a = reader.GetColumnSchema();
                             var r = MapValues<WorkOrder1>(reader);
+                            result_list.Add(r);
                         }
                     }
 
-                   // return response;
+                   return result_list ;
                 }
             }
         }

@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MyBusiness.DataAccess\MyBusiness.DataAccess.csproj" />
-  </ItemGroup>
-
 </Project>

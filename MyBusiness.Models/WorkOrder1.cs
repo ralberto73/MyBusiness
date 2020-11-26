@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace MyBusiness.DataAccess
+namespace MyBusiness.Models
 {
     public partial class WorkOrder1
     {
         public long WorkOrderId { get; set; }
         [Display(Name = "Status")]
         public string WorkOrderStatusId { get; set; }
-
-        public string Color { get; set; }
         [Display(Name = "Contact")]
         [Required(ErrorMessage = "Contact information is required")]
+
+        public string Color { get; set; }
         public string MainContat { get; set; }
         [Required(ErrorMessage = "Phone name is required")]
         public string Phone { get; set; }

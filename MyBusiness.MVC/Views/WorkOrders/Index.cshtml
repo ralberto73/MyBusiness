@@ -1,15 +1,8 @@
-﻿@model IEnumerable<MyBusiness.Models.WorkOrder>
+﻿@using  MyBusiness.DataAccess
 @using  System.Collections.Generic;
+@model IEnumerable<MyBusiness.Models.WorkOrder1>
 @{
     ViewData["Title"] = "Index";
-    //var Data1 = ViewData["StatusColors"].["CREATED"];
-    //var b = ;
-  /*  Dictionary<string, string> k = new Dictionary<string, string>();
-    foreach (var b in ViewBag.StatusColors)
-    {
-        k.Add( new KeyValuePair<string,string>() {}
-       
-    } */
 }
 
 <h1>Index</h1>
@@ -50,7 +43,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style='background-color: white'>
+            <tr style='background-color: @item.Color;'>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.WorkOrderStatusId)

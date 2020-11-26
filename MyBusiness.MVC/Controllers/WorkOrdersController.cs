@@ -22,27 +22,23 @@ namespace MyBusiness.MVC.Controllers
         // GET: WorkOrders
         public async Task<IActionResult> Index()
         {
-            /* var QSOuterJoin = from wo in _context.WorkOrders
-                               join wos in _context.WorkOrderStatuses
-                               on wo.WorkOrderStatusId equals wos.WorkOrderStatusId
-                               into WosGroup
-                               from fwo in WosGroup.DefaultIfEmpty()
-                               select new { fwo.Color , wo.WorkOrderId ,wo.WorkOrderStatusId ,wo.Brand ,wo.Description, wo.Email ,wo.MainContat, wo.Model, wo.Phone , wo.Year };
-            */
-            // ViewData["StatusColors"] = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
 
             //ViewBag.StatusColors = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
             string cnn = @"Data Source=LAPTOP-60J88C7D\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False";
             DataRepository da = new DataRepository(cnn);
-            await da.GetAllAsync();
+            List<WorkOrder1>  my_model = await da.GetAllAsync();
+
+
             Dictionary<string, string> colors = new Dictionary<string, string>();
             foreach (var a in _context.WorkOrderStatuses) 
             {
                 colors.Add(a.WorkOrderStatusId, a.Color);
             }
             ViewBag.StatusColors = colors;
-            return View(await _context.WorkOrders.ToListAsync());
-          //  return View( QSOuterJoins);
+           // my_model
+            return View(my_model);
+            // return View(await _context.WorkOrders.ToListAsync());
+            //  return View( QSOuterJoins);
             //QSOuterJoin
         }
 
