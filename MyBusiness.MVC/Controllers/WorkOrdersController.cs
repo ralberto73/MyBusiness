@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MyBusiness.DataAccess;
 using MyBusiness.Models;
 
 namespace MyBusiness.MVC.Controllers
@@ -31,6 +32,9 @@ namespace MyBusiness.MVC.Controllers
             // ViewData["StatusColors"] = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
 
             //ViewBag.StatusColors = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
+            string cnn = @"Data Source=LAPTOP-60J88C7D\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False";
+            DataRepository da = new DataRepository(cnn);
+            await da.GetAllAsync();
             Dictionary<string, string> colors = new Dictionary<string, string>();
             foreach (var a in _context.WorkOrderStatuses) 
             {

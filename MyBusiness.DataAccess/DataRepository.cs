@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,31 @@ namespace MyBusiness.DataAccess
             _connection_string = connection_string;
         }
 
+        public async Task GetAllAsync() 
+        {
+            using (SqlConnection sql = new SqlConnection(_connection_string))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetWorkOrders", sql))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@From",DateTime.Now));
+                    cmd.Parameters.Add(new SqlParameter("@To",  DateTime.Now));
+                   // var response = new List<Value>();
+                    await sql.OpenAsync();
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            //response.Add(MapToValue(reader));
+                            var a = reader[0];
+                        }
+                    }
+
+                   // return response;
+                }
+            }
+        }
         /*
         public async Task<List<Value>> GetAll()
         {
@@ -39,7 +65,7 @@ namespace MyBusiness.DataAccess
             }
         }
 
-        private Value MapToValue(SqlDataReader reader)
+        private Value MapToValue(SqlDataReader reader , )
         {
             return new Value()
             {
