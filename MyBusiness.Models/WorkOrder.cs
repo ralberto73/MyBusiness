@@ -21,5 +21,9 @@ namespace MyBusiness.Models
         public string Model { get; set; }
         public int? Year { get; set; }
         public string Description { get; set; }
+        public string CretedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public DateTime? UpdtaedDate { get; set; }
     }
 }

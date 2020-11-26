@@ -48,7 +48,16 @@ namespace MyBusiness.Models
 
                 entity.Property(e => e.Brand)
                     .HasMaxLength(20)
-                    .IsFixedLength(true);
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.CretedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('anonymous')");
 
                 entity.Property(e => e.Description).HasMaxLength(100);
 
@@ -66,6 +75,15 @@ namespace MyBusiness.Models
                     .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('anonymous')");
+
+                entity.Property(e => e.UpdtaedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.WorkOrderStatusId)
                     .IsRequired()
@@ -94,6 +112,10 @@ namespace MyBusiness.Models
                 entity.ToTable("WorkOrderStatus");
 
                 entity.Property(e => e.WorkOrderStatusId).HasMaxLength(20);
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.StatusDescription).HasMaxLength(150);
             });

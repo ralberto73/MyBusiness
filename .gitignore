@@ -16,3 +16,6 @@
 /MyBusiness.Models/bin/Debug/netcoreapp3.1
 /MyBusiness.MVC/bin/Debug/net5.0
 /Scripts/obj
+/MyBusiness.DataAccess/bin/Debug/netcoreapp3.1
+/MyBusiness.DataAccess/obj
+/Scripts/bin/Debug/netcoreapp3.1
