@@ -26,6 +26,8 @@ namespace MyBusiness.MVC.Controllers
             //ViewBag.StatusColors = _context.WorkOrderStatuses.ToDictionary(d => new KeyValuePair<string, string>(d.WorkOrderStatusId, d.Color));
             string cnn = @"Data Source=LAPTOP-60J88C7D\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False";
             DataRepository da = new DataRepository(cnn);
+
+            var aaa = da.DameData(DateTime.Now, DateTime.Now);
             List<WorkOrderListModel>  my_model = await da.GetAllWorkOrdersAsync( DateTime.Now , DateTime.Now);
 
 

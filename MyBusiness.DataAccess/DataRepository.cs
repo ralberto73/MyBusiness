@@ -56,6 +56,17 @@ namespace MyBusiness.DataAccess
             }
         }
 
+        public List<WorkOrderListModel> DameData(DateTime? from, DateTime? to)
+        {
+
+            return GetListFromSp<WorkOrderListModel>("GetWorkOrders",
+                                                     new List<SqlParameter>() { new SqlParameter("@From", System.Data.SqlDbType.DateTime) ,
+                                                                                new SqlParameter("@To", System.Data.SqlDbType.DateTime) },
+                                                     DateTime.Now,
+                                                     DateTime.Now
+                                                     );
+        }
+
         public List<T> GetListFromSp<T>( string procedure_name , List< SqlParameter> sql_parameters , params object[] params_values) where T : new()
         {
             List<T> result_list = new List<T>();
