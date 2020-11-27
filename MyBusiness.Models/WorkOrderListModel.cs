@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyBusiness.Models
 {
-    public partial class WorkOrder1
+    public partial class WorkOrderListModel
     {
         public long WorkOrderId { get; set; }
         [Display(Name = "Status")]
