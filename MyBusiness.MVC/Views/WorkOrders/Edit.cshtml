@@ -15,7 +15,8 @@
             <input type="hidden" asp-for="WorkOrderId" />
             <div class="form-group">
                 <label asp-for="WorkOrderStatusId" class="control-label"></label>
-                <input asp-for="WorkOrderStatusId" class="form-control" />
+                <select asp-for="WorkOrderStatusId" asp-items="@((List<SelectListItem>)ViewData["StatusList"])" class="form-control">
+                </select>
                 <span asp-validation-for="WorkOrderStatusId" class="text-danger"></span>
             </div>
             <div class="form-group">
