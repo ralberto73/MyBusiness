@@ -11,10 +11,12 @@ namespace MyBusiness.DataAccess
 {
     public class WorkOrderRepository
     {
-        private string _connection_string; 
+        private string _connection_string;
+        private AdoSqlHelper db = null;
         public WorkOrderRepository( string connection_string)
         {
             this._connection_string = connection_string;
+            db = new AdoSqlHelper(connection_string);
         }
 
 
@@ -24,7 +26,69 @@ namespace MyBusiness.DataAccess
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns></returns>
-        public async Task<List<WorkOrderListModel>> GetAllWorkOrdersAsync(DateTime? from, DateTime? to)
+        /// 
+
+          
+
+
+        public List<WorkOrderListModel> DameData(DateTime? from, DateTime? to)
+        {
+
+            return db.GetListFromSp<WorkOrderListModel>("GetWorkOrders",
+                                                     new List<SqlParameter>() { new SqlParameter("@From", System.Data.SqlDbType.DateTime) ,
+                                                                                new SqlParameter("@To", System.Data.SqlDbType.DateTime) },
+                                                     DateTime.Now,
+                                                     DateTime.Now
+                                                     );
+        }
+
+   
+
+
+
+ 
+    }
+}
+
+
+/*
+ 
+     public List<T> GetListFromSp<T>(string procedure_name, List<SqlParameter> sql_parameters, params object[] params_values) where T : new()
+        {
+            List<T> result_list = new List<T>();
+
+            using (SqlConnection sql = new SqlConnection(_connection_string))
+            {
+                using (SqlCommand cmd = new SqlCommand(procedure_name, sql))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    //  Fills  All Sp Parameters
+                    if (sql_parameters != null && sql_parameters.Count > 0 && sql_parameters.Count == params_values.Length)
+                    {
+                        foreach (SqlParameter parameter in sql_parameters)
+                        {
+                            cmd.Parameters.Add(parameter);
+                            cmd.Parameters[parameter.ParameterName].Value = params_values[0];
+                        }
+                    }
+                    sql.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //   var a = reader.GetColumnSchema();
+                            var r = MapValues<T>(reader);
+                            result_list.Add(r);
+                        }
+                    }
+                }
+            }
+            return result_list;
+        }
+----------------
+         public async Task<List<WorkOrderListModel>> GetAllWorkOrdersAsync(DateTime? from, DateTime? to)
         {
             //   Declares the result List 
             var result_list = new List<WorkOrderListModel>();
@@ -56,17 +120,9 @@ namespace MyBusiness.DataAccess
             }
         }
 
-        public List<WorkOrderListModel> DameData(DateTime? from, DateTime? to)
-        {
 
-            return GetListFromSp<WorkOrderListModel>("GetWorkOrders",
-                                                     new List<SqlParameter>() { new SqlParameter("@From", System.Data.SqlDbType.DateTime) ,
-                                                                                new SqlParameter("@To", System.Data.SqlDbType.DateTime) },
-                                                     DateTime.Now,
-                                                     DateTime.Now
-                                                     );
-        }
-
+-----------------------------------------
+ 
         public List<T> GetListFromSp<T>(string procedure_name, List<SqlParameter> sql_parameters, params object[] params_values) where T : new()
         {
             List<T> result_list = new List<T>();
@@ -101,34 +157,31 @@ namespace MyBusiness.DataAccess
             }
             return result_list;
         }
-
-        /*
-        public async Task<List<Value>> GetAll()
+------------------------------------------
+public async Task<List<Value>> GetAll()
+{
+    using (SqlConnection sql = new SqlConnection(_connectionString))
+    {
+        using (SqlCommand cmd = new SqlCommand("GetAllValues", sql))
         {
-            using (SqlConnection sql = new SqlConnection(_connectionString))
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            var response = new List<Value>();
+            await sql.OpenAsync();
+
+            using (var reader = await cmd.ExecuteReaderAsync())
             {
-                using (SqlCommand cmd = new SqlCommand("GetAllValues", sql))
+                while (await reader.ReadAsync())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    var response = new List<Value>();
-                    await sql.OpenAsync();
-
-                    using (var reader = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            response.Add(MapToValue(reader));
-                        }
-                    }
-
-                    return response;
+                    response.Add(MapToValue(reader));
                 }
             }
+
+            return response;
         }
+    }
+}
 
-        } */
-
-        private T MapValues<T>(SqlDataReader reader) where T : new()
+       private T MapValues<T>(SqlDataReader reader) where T : new()
         {
             T result = new T();
             // var columnShemas = ;
@@ -145,5 +198,5 @@ namespace MyBusiness.DataAccess
             }
             return result;
         }
-    }
-}
+
+} */
