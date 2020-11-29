@@ -18,7 +18,7 @@ namespace MyBusiness.Models
         public string ProductName { get; set; }
 
         public string CreatedBy { get; set; }
-        public int   UpdatedBy { get; set; }
+        public string UpdatedBy { get; set; }
         public DateTime CreationDate { get; set; }
 
         public DateTime LastUpdateDate { get; set; }

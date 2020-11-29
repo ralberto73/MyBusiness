@@ -18,6 +18,7 @@ namespace MyBusiness.DataAccess
         {
             _connection_string = connection_string;
             WorkOrders = new WorkOrderRepository(_connection_string);
+            Products = new ProductsRepository(_connection_string);
 
         }
 

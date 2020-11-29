@@ -16,7 +16,7 @@ namespace MyBusiness.MVC.Controllers
         }
         public IActionResult Index()
         {
-            //_data_repository.WorkOrders.
+            var  a =  _data_repository.Products.GetAll();
             return View();
         }
     }
