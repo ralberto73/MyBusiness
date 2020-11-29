@@ -13,9 +13,9 @@ namespace MyBusiness.DataAccess
 
         public string Connection_string { get; }
 
-        public List<Products> GetAll() {
+        public List<Product> GetAll() {
 
-            return new List<Products>() { new Products { ProductId = 1, ProdCategoryId = 1, ProductName = "Product 1", CreatedBy = "sa", UpdatedBy = "sa", 
+            return new List<Product>() { new Product { ProductId = 1, ProdCategoryId = 1, ProductName = "Product 1", CreatedBy = "sa", UpdatedBy = "sa", 
                        CreationDate = DateTime.Now  , LastUpdateDate = DateTime.Now  } }; 
         }
     }

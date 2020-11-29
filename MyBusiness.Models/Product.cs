@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBusiness.Models
 {
-    public class Products
+    public class Product
     {
         [Key]
         public int ProductId { get; set; }

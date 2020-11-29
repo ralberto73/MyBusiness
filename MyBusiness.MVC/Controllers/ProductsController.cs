@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBusiness.DataAccess;
+using MyBusiness.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace MyBusiness.MVC.Controllers
         }
         public IActionResult Index()
         {
-            var  a =  _data_repository.Products.GetAll();
+            List<Product>   all_products =  _data_repository.Products.GetAll();
             return View();
         }
     }
