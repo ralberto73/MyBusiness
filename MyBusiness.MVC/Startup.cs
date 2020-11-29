@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyBusiness.DataAccess;
 using MyBusiness.Models;
 using MyBusiness.MVC.Data;
 using MyBusiness.MVC.Repository;
@@ -37,7 +38,8 @@ namespace MyBusiness.MVC
                  options.UseSqlServer(
                      Configuration.GetConnectionString("ApplicationDBConnection")));
 
-
+            //services.AddSingleton<IDataRepository, DataRepository(Configuration.GetConnectionString("ApplicationDBConnection"))>();
+            services.AddSingleton<IDataRepository>(new DataRepository(Configuration.GetConnectionString("ApplicationDBConnection")));
 
             services.AddSingleton <IBusinessRepository,BusinessRepository>();
 

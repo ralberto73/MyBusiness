@@ -22,7 +22,11 @@ SELECT [WorkOrderId]
 		ON WorkOrder.WorkOrderStatusId = WorkOrderStatus.WorkOrderStatusId
 GO
 
-DECLARE @From DATETIME = GETDATE()
-DECLARE @TO DATETIME = GETDATE()
 
-EXEC  dbo.GetWorkOrders   @From , @To
+CREATE PROCEDURE  GetAllProducts
+AS
+SELECT [ProductId]
+      ,[ProductName]
+FROM 
+   [MyBusiness].[dbo].[Products]
+GO

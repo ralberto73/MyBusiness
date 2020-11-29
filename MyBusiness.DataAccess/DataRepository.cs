@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace MyBusiness.DataAccess
 {
-    public class DataRepository
+    public class DataRepository : IDataRepository
     {
         private string _connection_string;
 
-        public WorkOrderRepository WorkOrders;
-        public DataRepository( string connection_string )
+        public WorkOrderRepository WorkOrders { get; }
+        public ProductsRepository Products { get; }
+        public DataRepository(string connection_string)
         {
             _connection_string = connection_string;
             WorkOrders = new WorkOrderRepository(_connection_string);
+
         }
-        
-        
+
+
     }
 }

@@ -11,7 +11,7 @@ namespace MyBusiness.DataAccess
 {
     public class WorkOrderRepository
     {
-        private string _connection_string;
+        private string       _connection_string;
         private AdoSqlHelper db = null;
         public WorkOrderRepository( string connection_string)
         {
@@ -23,13 +23,10 @@ namespace MyBusiness.DataAccess
         /// <summary>
         ///  Get the List of Work Orders 
         /// </summary>
-        /// <param name="from"></param>
+        /// <param name="from">from </param>
         /// <param name="to"></param>
         /// <returns></returns>
         /// 
-
-          
-
 
         public List<WorkOrderListModel> DameData(DateTime? from, DateTime? to)
         {
