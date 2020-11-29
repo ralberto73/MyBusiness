@@ -18,7 +18,7 @@ namespace MyBusiness.MVC.Controllers
         public IActionResult Index()
         {
             List<Product>   all_products =  _data_repository.Products.GetAll();
-            return View();
+            return View(all_products);
         }
     }
 }
