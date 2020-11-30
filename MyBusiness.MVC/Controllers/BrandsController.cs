@@ -21,10 +21,11 @@ namespace MyBusiness.MVC.Controllers
                 // GET: Brands
         public async Task<IActionResult> Index()
         {
-          //return View(await _data_repository.Brand.GetAll().ToListAsync());
             return View( _data_repository.Brand.GetAll());
         }
-        /*
+        
+        
+    
 
 
                 // GET: Brands/Details/5
@@ -35,8 +36,8 @@ namespace MyBusiness.MVC.Controllers
                         return NotFound();
                     }
 
-                    var brand = await _context.Brands
-                        .FirstOrDefaultAsync(m => m.BrandId == id);
+                      var brand = _data_repository.Brand.GetById(int.Parse(id));
+                        
                     if (brand == null)
                     {
                         return NotFound();
@@ -44,7 +45,7 @@ namespace MyBusiness.MVC.Controllers
 
                     return View(brand);
                 }
-
+  
                 // GET: Brands/Create
                 public IActionResult Create()
                 {
@@ -54,19 +55,20 @@ namespace MyBusiness.MVC.Controllers
                 // POST: Brands/Create
                 // To protect from overposting attacks, enable the specific properties you want to bind to.
                 // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
                 [HttpPost]
                 [ValidateAntiForgeryToken]
-                public async Task<IActionResult> Create([Bind("BrandId,Description")] Brand brand)
+                public async Task<IActionResult> Create([Bind("BrandName")] Brand brand)
                 {
                     if (ModelState.IsValid)
                     {
-                        _context.Add(brand);
-                        await _context.SaveChangesAsync();
+                       int i = _data_repository.Brand.AddNew(brand , "raul");
+                       // await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
                     }
                     return View(brand);
                 }
-
+ /* 
                 // GET: Brands/Edit/5
                 public async Task<IActionResult> Edit(string id)
                 {
@@ -82,13 +84,13 @@ namespace MyBusiness.MVC.Controllers
                     }
                     return View(brand);
                 }
-
+       */
                 // POST: Brands/Edit/5
                 // To protect from overposting attacks, enable the specific properties you want to bind to.
                 // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
                 [HttpPost]
                 [ValidateAntiForgeryToken]
-                public async Task<IActionResult> Edit(string id, [Bind("BrandId,Description")] Brand brand)
+                public async Task<IActionResult> Edit(int id, [Bind("BrandId,BrandName")] Brand brand)
                 {
                     if (id != brand.BrandId)
                     {
@@ -97,10 +99,10 @@ namespace MyBusiness.MVC.Controllers
 
                     if (ModelState.IsValid)
                     {
-                        try
+                      /*  try
                         {
-                            _context.Update(brand);
-                            await _context.SaveChangesAsync();
+                         //   _context.Update(brand);
+                         //   await _context.SaveChangesAsync();
                         }
                         catch (DbUpdateConcurrencyException)
                         {
@@ -112,12 +114,12 @@ namespace MyBusiness.MVC.Controllers
                             {
                                 throw;
                             }
-                        }
+                        }*/
                         return RedirectToAction(nameof(Index));
                     }
                     return View(brand);
                 }
-
+/*
                 // GET: Brands/Delete/5
                 public async Task<IActionResult> Delete(string id)
                 {

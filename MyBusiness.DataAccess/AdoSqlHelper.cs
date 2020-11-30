@@ -25,6 +25,14 @@ namespace MyBusiness.DataAccess
 
         }
 
+        /// <summary>
+        ///     Call  stored procedures and returns a list of type T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="procedure_name">Procedure Name</param>
+        /// <param name="sql_parameters">List of Sql Parameters</param>
+        /// <param name="params_values">Lis of parameter's values </param>
+        /// <returns></returns>
         public List<T> GetListFromSp<T>(string procedure_name, List<SqlParameter> sql_parameters, params object[] params_values) where T : new()
         {
             List<T> result_list = new List<T>();
@@ -38,10 +46,13 @@ namespace MyBusiness.DataAccess
                     //  Fills  All Sp Parameters
                     if (sql_parameters != null && sql_parameters.Count > 0 && sql_parameters.Count == params_values.Length)
                     {
+                        int pos = 0;
                         foreach (SqlParameter parameter in sql_parameters)
                         {
+                            
                             cmd.Parameters.Add(parameter);
-                            cmd.Parameters[parameter.ParameterName].Value = params_values[0];
+                            cmd.Parameters[parameter.ParameterName].Value = params_values[pos];
+                            pos++;
                         }
                     }
                     sql.Open();
@@ -59,6 +70,37 @@ namespace MyBusiness.DataAccess
             }
             return result_list;
         }
+
+
+        public Object GetValueFromSp<T>(string procedure_name, List<SqlParameter> sql_parameters, params object[] params_values) 
+        {
+            Object result;
+
+            using (SqlConnection sql = new SqlConnection(_connection_string))
+            {
+                using (SqlCommand cmd = new SqlCommand(procedure_name, sql))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    //  Fills  All Sp Parameters
+                    if (sql_parameters != null && sql_parameters.Count > 0 && sql_parameters.Count == params_values.Length)
+                    {
+                        int pos = 0;
+                        foreach (SqlParameter parameter in sql_parameters)
+                        {
+                           
+                            cmd.Parameters.Add(parameter);
+                            cmd.Parameters[parameter.ParameterName].Value = params_values[pos]; 
+                            pos++;
+                        }
+                    }
+                    sql.Open();
+                    result = cmd.ExecuteScalar();
+                }
+            }
+            return result;
+        }
+
 
         private T MapValues<T>(SqlDataReader reader) where T : new()
         {
