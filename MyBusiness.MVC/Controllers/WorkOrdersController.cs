@@ -30,15 +30,18 @@ namespace MyBusiness.MVC.Controllers
            // var aaa = da.WorkOrders.DameData(DateTime.Now, DateTime.Now);
             List<WorkOrderListModel>  my_model = da.WorkOrders.DameData( DateTime.Now , DateTime.Now);
 
+            var x = da.Brands.GetAll();
 
-            Dictionary<string, string> colors = new Dictionary<string, string>();
-            foreach (var a in _context.WorkOrderStatuses) 
-            {
-                colors.Add(a.WorkOrderStatusId, a.Color);
-            }
-            ViewBag.StatusColors = colors;
-           // my_model
+
             return View(my_model);
+
+            //Dictionary<string, string> colors = new Dictionary<string, string>();
+            //foreach (var a in _context.WorkOrderStatuses) 
+            //{
+            //    colors.Add(a.WorkOrderStatusId, a.Color);
+            //}
+            //ViewBag.StatusColors = colors;
+
             // return View(await _context.WorkOrders.ToListAsync());
             //  return View( QSOuterJoins);
             //QSOuterJoin
