@@ -17,7 +17,7 @@ namespace MyBusiness.Models
         {
         }
 
-        public virtual DbSet<Brand> Brands { get; set; }
+       // public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<WorkOrderDetail> WorkOrderDetails { get; set; }
         public virtual DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
@@ -33,14 +33,7 @@ namespace MyBusiness.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Brand>(entity =>
-            {
-                entity.ToTable("Brand");
 
-                entity.Property(e => e.BrandId).HasMaxLength(20);
-
-                entity.Property(e => e.Description).HasMaxLength(150);
-            });
 
             modelBuilder.Entity<WorkOrder>(entity =>
             {

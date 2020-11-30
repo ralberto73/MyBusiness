@@ -17,10 +17,10 @@ namespace MyBusiness.DataAccess
             db = new AdoSqlHelper(connection_string);
         }
 
-        public List<Brand> GetAll()
+        public  List<Brand> GetAll()
         {
 
-            return db.GetListFromSp<Brand>("GetAllBrands", null, null);
+            return db.GetListFromSp<Brand>("Brands_GetAll", null, null);
         }
     }
 }

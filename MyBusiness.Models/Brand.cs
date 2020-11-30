@@ -7,7 +7,15 @@ namespace MyBusiness.Models
 {
     public partial class Brand
     {
-        public string BrandId { get; set; }
-        public string Description { get; set; }
+        public int BrandId { get; set; }
+        public string  BrandName { get; set; }
     }
 }
+/*
+ * [BrandId]
+      ,[]
+      ,[CreatedBy]
+      ,[UpdatedBy]
+      ,[CreationDate]
+      ,[LastUpdateDate]
+*/

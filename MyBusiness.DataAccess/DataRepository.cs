@@ -15,13 +15,13 @@ namespace MyBusiness.DataAccess
         public WorkOrderRepository WorkOrders { get; }
         public ProductsRepository Products { get; }
 
-        public BrandRepository Brands { get; }
+        public BrandRepository Brand { get; }
         public DataRepository(string connection_string)
         {
             _connection_string = connection_string;
             WorkOrders = new WorkOrderRepository(_connection_string);
             Products   = new ProductsRepository(_connection_string);
-            Brands     = new BrandRepository(_connection_string);
+            Brand     = new BrandRepository(_connection_string);
 
         }
 

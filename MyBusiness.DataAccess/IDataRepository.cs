@@ -4,5 +4,7 @@
     {
         ProductsRepository Products { get; }
         WorkOrderRepository WorkOrders { get; }
+
+        BrandRepository Brand { get; }
     }
 }

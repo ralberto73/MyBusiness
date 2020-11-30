@@ -27,13 +27,15 @@ namespace MyBusiness.MVC.Controllers
             string cnn = @"Data Source=LAPTOP-60J88C7D\LOCALDB;Initial Catalog=MyBusiness;Integrated Security=True;Pooling=False";
             DataRepository da = new DataRepository(cnn);
 
-           // var aaa = da.WorkOrders.DameData(DateTime.Now, DateTime.Now);
+    
             List<WorkOrderListModel>  my_model = da.WorkOrders.DameData( DateTime.Now , DateTime.Now);
 
-            var x = da.Brands.GetAll();
+          
 
 
             return View(my_model);
+
+            //  var x = da.Brands.GetAll();
 
             //Dictionary<string, string> colors = new Dictionary<string, string>();
             //foreach (var a in _context.WorkOrderStatuses) 
@@ -70,11 +72,11 @@ namespace MyBusiness.MVC.Controllers
         {
             //  Fill  Brands Dropdown List
 
-            ViewData["BrandList"] = _context.Brands.Select(n => new SelectListItem 
+        /*    ViewData["BrandList"] = _context.Brands.Select(n => new SelectListItem 
                                             {
                                                 Value = n.BrandId,
                                                 Text = n.BrandId
-                                            }).ToList();
+                                            }).ToList();*/
            
            
             return View();
