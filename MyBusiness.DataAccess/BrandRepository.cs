@@ -46,8 +46,18 @@ namespace MyBusiness.DataAccess
                                                                new SqlParameter("@user",      System.Data.SqlDbType.VarChar,100) }
                                 , brand.BrandName
                                 , user);
-            return 1;
+            return Convert.ToInt32(result);
         }
+
+        public int Delete(Brand brand)
+        {
+            Object result = db.GetValueFromSp<int>("Brands_Delete"
+                                , new List<SqlParameter>() { new SqlParameter("@BarandID", System.Data.SqlDbType.Int) }
+                                , brand.BrandId);
+            return Convert.ToInt32(result);
+        }
+
+
     }
 }
 
